@@ -21,7 +21,7 @@ def hello_world():
     return 'Hello, World!'
 
 
-@app.route('/main/POINT(<int:coords1> <int:coords2>)')
+@app.route('/main/POINT(<float:coords1> <float:coords2>)')
 def point(coords1, coords2):
     return ('POINT(' + str(coords1) + ' ' + str(coords2) + ' ' + str(get_elevation(coords1, coords2)) + ')')
 
@@ -38,7 +38,7 @@ def linestring(coords):
         answer = ''
         while i < (leng - 1):
             answer = answer + str(mas[i]) + ' ' + str(mas[i + 1]) + \
-                     ' ' + str(get_elevation(int(mas[i]), int(mas[i + 1]))) + ', '
+                     ' ' + str(get_elevation(float(mas[i]), float(mas[i + 1]))) + ', '
             i = i + 2
 
         answer = answer[:-2]
