@@ -23,10 +23,23 @@ def hello_world():
 
 @app.route('/main/POINT(<int:coords1> <int:coords2>)')
 def point(coords1, coords2):
-    return ('POINT(' + str(coords1) + ' ' + str(coords2) + ' ' + str(get_elevation(coords1, coords2)) + ')')
+    return ('POINT(' + str(coords1) + ' ' + str(coords2) + ' ' + str(get_elevation(coords1, coords2)) + ')1111')
 
 
-@app.route('/main/LINESTRING(<int:coords1> <int:coords2>, <int:coords3> <int:coords4>)')
-def linestring(coords1, coords2, coords3, coords4):
-    return ('LINESTRING(' + str(coords1) + ' ' + str(coords2) + ' ' + str(get_elevation(coords1, coords2)) +
-            ', ' + str(coords3) + ' ' + str(coords4) + ' ' + str(get_elevation(coords3, coords4)) + ')')
+@app.route('/main/LINESTRING(<coords>)')
+def linestring(coords):
+    coords = coords.replace(',', '')
+    mas = coords.split()
+    leng = len(mas)
+    if (leng % 2) != 0:
+        return 'Ошибка в вводе кооринат'
+    else:
+        i = 0
+        answer = ''
+        while i < (leng - 1):
+            answer = answer + str(mas[i]) + ' ' + str(mas[i + 1]) + \
+                     ' ' + str(get_elevation(int(mas[i]), int(mas[i + 1]))) + ', '
+            i = i + 2
+
+        answer = answer[:-2]
+        return 'LINESTRING(' + str(answer) + ')'
