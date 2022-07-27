@@ -23,7 +23,7 @@ def hello_world():
 
 @app.route('/main/POINT(<int:coords1> <int:coords2>)')
 def point(coords1, coords2):
-    return ('POINT(' + str(coords1) + ' ' + str(coords2) + ' ' + str(get_elevation(coords1, coords2)) + ')1111')
+    return ('POINT(' + str(coords1) + ' ' + str(coords2) + ' ' + str(get_elevation(coords1, coords2)) + ')')
 
 
 @app.route('/main/LINESTRING(<coords>)')
